@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package measure;
+
+option go_package = "github.com/KVM-SYSTEM/contracts;ssov1";
+
+
+message Measure {
+    string id = 1;
+    string name = 2;
+    string full_name = 3;
+}

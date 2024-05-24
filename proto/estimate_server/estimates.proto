@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package measure;
+
+option go_package = "github.com/KVM-SYSTEM/estimates;ssov1";
+
+import "models/estimate.proto";
+
+message GetReq {
+    string id = 1;
+}
+
+message GetRes {
+    estimate.Estimate material = 1;
+}
+
+service EstimateService{
+    rpc Get(GetReq) returns (GetRes);
+}

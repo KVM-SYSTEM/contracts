@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package measure;
+
+option go_package = "github.com/KVM-SYSTEM/contracts;ssov1";
+
+import "models/material.proto";
+
+message GetReq {
+    string id = 1;
+}
+
+message GetRes {
+    material.Material material = 1;
+}
+
+service MaterialService{
+    rpc Get(GetReq) returns (GetRes);
+}
