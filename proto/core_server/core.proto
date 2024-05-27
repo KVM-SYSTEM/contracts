@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package measure;
+
+option go_package = "https://github.com/KVM-SYSTEM/contracts;core_server";
+
+import "google/protobuf/empty.proto";
+
+//Models
+
+message Measure {
+    string ID = 1;
+    string name = 2;
+    string full_name = 3;
+}
+
+message Material {
+    string ID = 1;
+    string title = 2;
+    string measure = 3;
+    int64 cost = 4;
+    int64 weight = 5;
+    string manufacturer = 6;
+    string barcode = 7;
+    string img = 8;
+    string sectionId = 9;
+}
+
+//Get Material
+message GetMaterialReq {
+    string ID = 1;
+}
+message GetMaterialRes {
+    Material material = 1;
+}
+//Add Material
+message AddMaterialReq {
+    string title = 1;
+    string measure = 2;
+    int32 cost = 3;
+    int32 weight = 4;
+    string manufacturer = 5;
+    string barcode = 6;
+    string img = 7;
+    string sectionId = 8;
+}
+message AddMaterialRes {
+    string id = 1;
+}
+
+//Delete Material 
+message DeleteMaterialReq {
+    string id = 1;
+}
+
+
+service MaterialService{
+    rpc Get(GetMaterialReq) returns (GetMaterialRes);
+    rpc Add(AddMaterialReq) returns (AddMaterialRes);
+    rpc Delete(DeleteMaterialReq) returns (google.protobuf.Empty);
+}

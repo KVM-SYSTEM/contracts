@@ -2,16 +2,16 @@ syntax = "proto3";
 
 package measure;
 
-option go_package = "github.com/KVM-SYSTEM/estimates;ssov1";
+option go_package = "https://github.com/KVM-SYSTEM/estimates;ssov1";
 
-import "models/estimate.proto";
+import "models/material.proto";
 
 message GetReq {
     string id = 1;
 }
 
 message GetRes {
-    estimate.Estimate material = 1;
+    material.Material material = 1;
 }
 
 service EstimateService{
