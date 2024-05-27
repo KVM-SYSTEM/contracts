@@ -47,3 +47,5 @@ func main() {
 
 	println(string(out))
 }
+
+//Version = >1
