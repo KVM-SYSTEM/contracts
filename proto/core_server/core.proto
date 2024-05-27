@@ -37,8 +37,8 @@ message GetMaterialRes {
 message AddMaterialReq {
     string title = 1;
     string measure = 2;
-    int32 cost = 3;
-    int32 weight = 4;
+    int64 cost = 3;
+    int64 weight = 4;
     string manufacturer = 5;
     string barcode = 6;
     string img = 7;
