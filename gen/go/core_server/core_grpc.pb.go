@@ -23,8 +23,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MaterialServiceClient interface {
-	Get(ctx context.Context, in *GetMaterialReq, opts ...grpc.CallOption) (*GetMaterialRes, error)
 	Add(ctx context.Context, in *AddMaterialReq, opts ...grpc.CallOption) (*AddMaterialRes, error)
+	Get(ctx context.Context, in *GetMaterialReq, opts ...grpc.CallOption) (*GetMaterialRes, error)
+	GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyRes, error)
 	Delete(ctx context.Context, in *DeleteMaterialReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -36,6 +37,15 @@ func NewMaterialServiceClient(cc grpc.ClientConnInterface) MaterialServiceClient
 	return &materialServiceClient{cc}
 }
 
+func (c *materialServiceClient) Add(ctx context.Context, in *AddMaterialReq, opts ...grpc.CallOption) (*AddMaterialRes, error) {
+	out := new(AddMaterialRes)
+	err := c.cc.Invoke(ctx, "/measure.MaterialService/Add", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *materialServiceClient) Get(ctx context.Context, in *GetMaterialReq, opts ...grpc.CallOption) (*GetMaterialRes, error) {
 	out := new(GetMaterialRes)
 	err := c.cc.Invoke(ctx, "/measure.MaterialService/Get", in, out, opts...)
@@ -45,9 +55,9 @@ func (c *materialServiceClient) Get(ctx context.Context, in *GetMaterialReq, opt
 	return out, nil
 }
 
-func (c *materialServiceClient) Add(ctx context.Context, in *AddMaterialReq, opts ...grpc.CallOption) (*AddMaterialRes, error) {
-	out := new(AddMaterialRes)
-	err := c.cc.Invoke(ctx, "/measure.MaterialService/Add", in, out, opts...)
+func (c *materialServiceClient) GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyRes, error) {
+	out := new(GetManyRes)
+	err := c.cc.Invoke(ctx, "/measure.MaterialService/GetMany", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,8 +77,9 @@ func (c *materialServiceClient) Delete(ctx context.Context, in *DeleteMaterialRe
 // All implementations must embed UnimplementedMaterialServiceServer
 // for forward compatibility
 type MaterialServiceServer interface {
-	Get(context.Context, *GetMaterialReq) (*GetMaterialRes, error)
 	Add(context.Context, *AddMaterialReq) (*AddMaterialRes, error)
+	Get(context.Context, *GetMaterialReq) (*GetMaterialRes, error)
+	GetMany(context.Context, *emptypb.Empty) (*GetManyRes, error)
 	Delete(context.Context, *DeleteMaterialReq) (*emptypb.Empty, error)
 	mustEmbedUnimplementedMaterialServiceServer()
 }
@@ -77,11 +88,14 @@ type MaterialServiceServer interface {
 type UnimplementedMaterialServiceServer struct {
 }
 
+func (UnimplementedMaterialServiceServer) Add(context.Context, *AddMaterialReq) (*AddMaterialRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+}
 func (UnimplementedMaterialServiceServer) Get(context.Context, *GetMaterialReq) (*GetMaterialRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedMaterialServiceServer) Add(context.Context, *AddMaterialReq) (*AddMaterialRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+func (UnimplementedMaterialServiceServer) GetMany(context.Context, *emptypb.Empty) (*GetManyRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMany not implemented")
 }
 func (UnimplementedMaterialServiceServer) Delete(context.Context, *DeleteMaterialReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -97,6 +111,24 @@ type UnsafeMaterialServiceServer interface {
 
 func RegisterMaterialServiceServer(s grpc.ServiceRegistrar, srv MaterialServiceServer) {
 	s.RegisterService(&MaterialService_ServiceDesc, srv)
+}
+
+func _MaterialService_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddMaterialReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaterialServiceServer).Add(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/measure.MaterialService/Add",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaterialServiceServer).Add(ctx, req.(*AddMaterialReq))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _MaterialService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -117,20 +149,20 @@ func _MaterialService_Get_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MaterialService_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddMaterialReq)
+func _MaterialService_GetMany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MaterialServiceServer).Add(ctx, in)
+		return srv.(MaterialServiceServer).GetMany(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/measure.MaterialService/Add",
+		FullMethod: "/measure.MaterialService/GetMany",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MaterialServiceServer).Add(ctx, req.(*AddMaterialReq))
+		return srv.(MaterialServiceServer).GetMany(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -161,12 +193,16 @@ var MaterialService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MaterialServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "Add",
+			Handler:    _MaterialService_Add_Handler,
+		},
+		{
 			MethodName: "Get",
 			Handler:    _MaterialService_Get_Handler,
 		},
 		{
-			MethodName: "Add",
-			Handler:    _MaterialService_Add_Handler,
+			MethodName: "GetMany",
+			Handler:    _MaterialService_GetMany_Handler,
 		},
 		{
 			MethodName: "Delete",

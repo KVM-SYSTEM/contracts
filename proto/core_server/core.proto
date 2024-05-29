@@ -5,33 +5,48 @@ package measure;
 option go_package = "https://github.com/KVM-SYSTEM/contracts;core_server";
 
 import "google/protobuf/empty.proto";
-
+import "google/protobuf/timestamp.proto";
 //Models
 
 message Measure {
-    string ID = 1;
+    string _id = 1;
     string name = 2;
     string full_name = 3;
+    google.protobuf.Timestamp createdAt = 4;
+    google.protobuf.Timestamp updatedAt = 5; 
 }
-
-message Material {
-    string ID = 1;
+message Section {
+    string id = 1;
     string title = 2;
-    string measure = 3;
+    string description = 3;
+    string group_id = 4; 
+    string user_id = 5;
+    google.protobuf.Timestamp createdAt = 6; 
+    google.protobuf.Timestamp updatedAt = 7; 
+}
+message Material {
+    string _id = 1;
+    string title = 2;
+    Measure measure = 3;
     int64 cost = 4;
     int64 weight = 5;
     string manufacturer = 6;
     string barcode = 7;
     string img = 8;
     string sectionId = 9;
+    google.protobuf.Timestamp createdAt = 10;
+    google.protobuf.Timestamp updatedAt = 11; 
 }
 
 //Get Material
 message GetMaterialReq {
-    string ID = 1;
+    string _id = 1;
 }
 message GetMaterialRes {
     Material material = 1;
+}
+message GetManyRes {
+    repeated Material materials = 1;
 }
 //Add Material
 message AddMaterialReq {
@@ -45,17 +60,18 @@ message AddMaterialReq {
     string sectionId = 8;
 }
 message AddMaterialRes {
-    string id = 1;
+    string _id = 1;
 }
 
 //Delete Material 
 message DeleteMaterialReq {
-    string id = 1;
+    string _id = 1;
 }
 
 
 service MaterialService{
-    rpc Get(GetMaterialReq) returns (GetMaterialRes);
     rpc Add(AddMaterialReq) returns (AddMaterialRes);
+    rpc Get(GetMaterialReq) returns (GetMaterialRes);
+    rpc GetMany(google.protobuf.Empty) returns (GetManyRes);
     rpc Delete(DeleteMaterialReq) returns (google.protobuf.Empty);
 }
