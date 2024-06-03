@@ -25,7 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 type MaterialServiceClient interface {
 	Add(ctx context.Context, in *AddMaterialReq, opts ...grpc.CallOption) (*AddMaterialRes, error)
 	Get(ctx context.Context, in *GetMaterialReq, opts ...grpc.CallOption) (*GetMaterialRes, error)
-	GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyRes, error)
+	GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyMaterialRes, error)
 	Delete(ctx context.Context, in *DeleteMaterialReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -55,8 +55,8 @@ func (c *materialServiceClient) Get(ctx context.Context, in *GetMaterialReq, opt
 	return out, nil
 }
 
-func (c *materialServiceClient) GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyRes, error) {
-	out := new(GetManyRes)
+func (c *materialServiceClient) GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyMaterialRes, error) {
+	out := new(GetManyMaterialRes)
 	err := c.cc.Invoke(ctx, "/measure.MaterialService/GetMany", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -79,7 +79,7 @@ func (c *materialServiceClient) Delete(ctx context.Context, in *DeleteMaterialRe
 type MaterialServiceServer interface {
 	Add(context.Context, *AddMaterialReq) (*AddMaterialRes, error)
 	Get(context.Context, *GetMaterialReq) (*GetMaterialRes, error)
-	GetMany(context.Context, *emptypb.Empty) (*GetManyRes, error)
+	GetMany(context.Context, *emptypb.Empty) (*GetManyMaterialRes, error)
 	Delete(context.Context, *DeleteMaterialReq) (*emptypb.Empty, error)
 	mustEmbedUnimplementedMaterialServiceServer()
 }
@@ -94,7 +94,7 @@ func (UnimplementedMaterialServiceServer) Add(context.Context, *AddMaterialReq) 
 func (UnimplementedMaterialServiceServer) Get(context.Context, *GetMaterialReq) (*GetMaterialRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedMaterialServiceServer) GetMany(context.Context, *emptypb.Empty) (*GetManyRes, error) {
+func (UnimplementedMaterialServiceServer) GetMany(context.Context, *emptypb.Empty) (*GetManyMaterialRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMany not implemented")
 }
 func (UnimplementedMaterialServiceServer) Delete(context.Context, *DeleteMaterialReq) (*emptypb.Empty, error) {
@@ -207,6 +207,250 @@ var MaterialService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _MaterialService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "core.proto",
+}
+
+// DivideServiceClient is the client API for DivideService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type DivideServiceClient interface {
+	GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyDividesRes, error)
+	Get(ctx context.Context, in *GetDivideReq, opts ...grpc.CallOption) (*GetDivideRes, error)
+}
+
+type divideServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewDivideServiceClient(cc grpc.ClientConnInterface) DivideServiceClient {
+	return &divideServiceClient{cc}
+}
+
+func (c *divideServiceClient) GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyDividesRes, error) {
+	out := new(GetManyDividesRes)
+	err := c.cc.Invoke(ctx, "/measure.DivideService/GetMany", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *divideServiceClient) Get(ctx context.Context, in *GetDivideReq, opts ...grpc.CallOption) (*GetDivideRes, error) {
+	out := new(GetDivideRes)
+	err := c.cc.Invoke(ctx, "/measure.DivideService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// DivideServiceServer is the server API for DivideService service.
+// All implementations must embed UnimplementedDivideServiceServer
+// for forward compatibility
+type DivideServiceServer interface {
+	GetMany(context.Context, *emptypb.Empty) (*GetManyDividesRes, error)
+	Get(context.Context, *GetDivideReq) (*GetDivideRes, error)
+	mustEmbedUnimplementedDivideServiceServer()
+}
+
+// UnimplementedDivideServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedDivideServiceServer struct {
+}
+
+func (UnimplementedDivideServiceServer) GetMany(context.Context, *emptypb.Empty) (*GetManyDividesRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMany not implemented")
+}
+func (UnimplementedDivideServiceServer) Get(context.Context, *GetDivideReq) (*GetDivideRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedDivideServiceServer) mustEmbedUnimplementedDivideServiceServer() {}
+
+// UnsafeDivideServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to DivideServiceServer will
+// result in compilation errors.
+type UnsafeDivideServiceServer interface {
+	mustEmbedUnimplementedDivideServiceServer()
+}
+
+func RegisterDivideServiceServer(s grpc.ServiceRegistrar, srv DivideServiceServer) {
+	s.RegisterService(&DivideService_ServiceDesc, srv)
+}
+
+func _DivideService_GetMany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DivideServiceServer).GetMany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/measure.DivideService/GetMany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DivideServiceServer).GetMany(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DivideService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDivideReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DivideServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/measure.DivideService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DivideServiceServer).Get(ctx, req.(*GetDivideReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// DivideService_ServiceDesc is the grpc.ServiceDesc for DivideService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var DivideService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "measure.DivideService",
+	HandlerType: (*DivideServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetMany",
+			Handler:    _DivideService_GetMany_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _DivideService_Get_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "core.proto",
+}
+
+// SectionServiceClient is the client API for SectionService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type SectionServiceClient interface {
+	GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManySectionsRes, error)
+	Get(ctx context.Context, in *GetSectionReq, opts ...grpc.CallOption) (*GetSectionRes, error)
+}
+
+type sectionServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSectionServiceClient(cc grpc.ClientConnInterface) SectionServiceClient {
+	return &sectionServiceClient{cc}
+}
+
+func (c *sectionServiceClient) GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManySectionsRes, error) {
+	out := new(GetManySectionsRes)
+	err := c.cc.Invoke(ctx, "/measure.SectionService/GetMany", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sectionServiceClient) Get(ctx context.Context, in *GetSectionReq, opts ...grpc.CallOption) (*GetSectionRes, error) {
+	out := new(GetSectionRes)
+	err := c.cc.Invoke(ctx, "/measure.SectionService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SectionServiceServer is the server API for SectionService service.
+// All implementations must embed UnimplementedSectionServiceServer
+// for forward compatibility
+type SectionServiceServer interface {
+	GetMany(context.Context, *emptypb.Empty) (*GetManySectionsRes, error)
+	Get(context.Context, *GetSectionReq) (*GetSectionRes, error)
+	mustEmbedUnimplementedSectionServiceServer()
+}
+
+// UnimplementedSectionServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedSectionServiceServer struct {
+}
+
+func (UnimplementedSectionServiceServer) GetMany(context.Context, *emptypb.Empty) (*GetManySectionsRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMany not implemented")
+}
+func (UnimplementedSectionServiceServer) Get(context.Context, *GetSectionReq) (*GetSectionRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedSectionServiceServer) mustEmbedUnimplementedSectionServiceServer() {}
+
+// UnsafeSectionServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SectionServiceServer will
+// result in compilation errors.
+type UnsafeSectionServiceServer interface {
+	mustEmbedUnimplementedSectionServiceServer()
+}
+
+func RegisterSectionServiceServer(s grpc.ServiceRegistrar, srv SectionServiceServer) {
+	s.RegisterService(&SectionService_ServiceDesc, srv)
+}
+
+func _SectionService_GetMany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SectionServiceServer).GetMany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/measure.SectionService/GetMany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SectionServiceServer).GetMany(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SectionService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSectionReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SectionServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/measure.SectionService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SectionServiceServer).Get(ctx, req.(*GetSectionReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// SectionService_ServiceDesc is the grpc.ServiceDesc for SectionService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SectionService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "measure.SectionService",
+	HandlerType: (*SectionServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetMany",
+			Handler:    _SectionService_GetMany_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _SectionService_Get_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

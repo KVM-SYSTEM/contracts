@@ -15,15 +15,7 @@ message Measure {
     google.protobuf.Timestamp createdAt = 4;
     google.protobuf.Timestamp updatedAt = 5; 
 }
-message Section {
-    string id = 1;
-    string title = 2;
-    string description = 3;
-    string group_id = 4; 
-    string user_id = 5;
-    google.protobuf.Timestamp createdAt = 6; 
-    google.protobuf.Timestamp updatedAt = 7; 
-}
+
 message Material {
     string _id = 1;
     string title = 2;
@@ -37,7 +29,17 @@ message Material {
     google.protobuf.Timestamp createdAt = 10;
     google.protobuf.Timestamp updatedAt = 11; 
 }
-
+message Divide {
+    string _id = 1;
+    string title = 2;
+    string user = 3;
+    repeated string priceSections = 4;
+    string index = 5;
+}
+message Section {
+    string _id = 1;
+    string title = 2;
+}
 //Get Material
 message GetMaterialReq {
     string _id = 1;
@@ -45,7 +47,7 @@ message GetMaterialReq {
 message GetMaterialRes {
     Material material = 1;
 }
-message GetManyRes {
+message GetManyMaterialRes {
     repeated Material materials = 1;
 }
 //Add Material
@@ -67,11 +69,42 @@ message AddMaterialRes {
 message DeleteMaterialReq {
     string _id = 1;
 }
+//Get Divides
+message GetManyDividesRes {
+    repeated Divide divides = 1;
+}
+message GetDivideReq {
+    string _id = 1;
+}
+message GetDivideRes {
+    Divide divide = 1;
+};
 
+//Get Sections
+message GetManySectionsRes {
+    repeated Section sections = 1;
+}
+message GetSectionReq {
+    string _id = 1;
+}
+message GetSectionRes {
+    Divide divide = 1;
+};
 
 service MaterialService{
     rpc Add(AddMaterialReq) returns (AddMaterialRes);
     rpc Get(GetMaterialReq) returns (GetMaterialRes);
-    rpc GetMany(google.protobuf.Empty) returns (GetManyRes);
+    rpc GetMany(google.protobuf.Empty) returns (GetManyMaterialRes);
     rpc Delete(DeleteMaterialReq) returns (google.protobuf.Empty);
 }
+
+service DivideService{
+    rpc GetMany(google.protobuf.Empty) returns (GetManyDividesRes);
+    rpc Get(GetDivideReq) returns (GetDivideRes);
+}
+
+service SectionService{
+    rpc GetMany(google.protobuf.Empty) returns (GetManySectionsRes);
+    rpc Get(GetSectionReq) returns (GetSectionRes);
+}
+
