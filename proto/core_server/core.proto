@@ -88,7 +88,7 @@ message GetSectionReq {
     string _id = 1;
 }
 message GetSectionRes {
-    Divide divide = 1;
+    Section section = 1;
 };
 
 service MaterialService{
