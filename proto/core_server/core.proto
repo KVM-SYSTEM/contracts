@@ -31,9 +31,9 @@ message Material {
 }
 message Divide {
     string _id = 1;
-    string title = 2;
-    string user = 3;
-    repeated string priceSections = 4;
+    string title = 2; 
+    string user = 3; 
+    repeated string priceSections = 4; 
     string index = 5;
 }
 message Section {
