@@ -29,6 +29,19 @@ message Material {
     google.protobuf.Timestamp createdAt = 10;
     google.protobuf.Timestamp updatedAt = 11; 
 }
+message Price {
+    string _id = 1;
+    string title = 2;
+    string fullTitle = 3;
+    Measure measure = 4;
+    // string pricesCategory = 5;
+    // string pricesGroup = 6;
+    // string pricesDivide = 7;
+    repeated Material materials = 5;
+    int64 cost = 6;
+    int64 markup = 7;
+    bool isDefault = 8;
+}
 message Divide {
     string _id = 1;
     string title = 2; 
@@ -69,6 +82,21 @@ message AddMaterialRes {
 message DeleteMaterialReq {
     string _id = 1;
 }
+
+//Get prices
+
+message GetPriceReq {
+    string _id = 1;
+}
+
+message GetPriceRes {
+    Price price = 1;
+}
+
+message GetManyPricesRes {
+    repeated Price prices = 1;
+}
+
 //Get Divides
 message GetManyDividesRes {
     repeated Divide divides = 1;
@@ -96,6 +124,11 @@ service MaterialService{
     rpc Get(GetMaterialReq) returns (GetMaterialRes);
     rpc GetMany(google.protobuf.Empty) returns (GetManyMaterialRes);
     rpc Delete(DeleteMaterialReq) returns (google.protobuf.Empty);
+}
+
+service PriceService{
+    rpc Get(GetPriceReq) returns (GetPriceRes);
+    rpc GetMany(google.protobuf.Empty) returns (GetManyPricesRes);
 }
 
 service DivideService{

@@ -213,6 +213,128 @@ var MaterialService_ServiceDesc = grpc.ServiceDesc{
 	Metadata: "core.proto",
 }
 
+// PriceServiceClient is the client API for PriceService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PriceServiceClient interface {
+	Get(ctx context.Context, in *GetPriceReq, opts ...grpc.CallOption) (*GetPriceRes, error)
+	GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyPricesRes, error)
+}
+
+type priceServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPriceServiceClient(cc grpc.ClientConnInterface) PriceServiceClient {
+	return &priceServiceClient{cc}
+}
+
+func (c *priceServiceClient) Get(ctx context.Context, in *GetPriceReq, opts ...grpc.CallOption) (*GetPriceRes, error) {
+	out := new(GetPriceRes)
+	err := c.cc.Invoke(ctx, "/measure.PriceService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *priceServiceClient) GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyPricesRes, error) {
+	out := new(GetManyPricesRes)
+	err := c.cc.Invoke(ctx, "/measure.PriceService/GetMany", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PriceServiceServer is the server API for PriceService service.
+// All implementations must embed UnimplementedPriceServiceServer
+// for forward compatibility
+type PriceServiceServer interface {
+	Get(context.Context, *GetPriceReq) (*GetPriceRes, error)
+	GetMany(context.Context, *emptypb.Empty) (*GetManyPricesRes, error)
+	mustEmbedUnimplementedPriceServiceServer()
+}
+
+// UnimplementedPriceServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedPriceServiceServer struct {
+}
+
+func (UnimplementedPriceServiceServer) Get(context.Context, *GetPriceReq) (*GetPriceRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedPriceServiceServer) GetMany(context.Context, *emptypb.Empty) (*GetManyPricesRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMany not implemented")
+}
+func (UnimplementedPriceServiceServer) mustEmbedUnimplementedPriceServiceServer() {}
+
+// UnsafePriceServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PriceServiceServer will
+// result in compilation errors.
+type UnsafePriceServiceServer interface {
+	mustEmbedUnimplementedPriceServiceServer()
+}
+
+func RegisterPriceServiceServer(s grpc.ServiceRegistrar, srv PriceServiceServer) {
+	s.RegisterService(&PriceService_ServiceDesc, srv)
+}
+
+func _PriceService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPriceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PriceServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/measure.PriceService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PriceServiceServer).Get(ctx, req.(*GetPriceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PriceService_GetMany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PriceServiceServer).GetMany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/measure.PriceService/GetMany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PriceServiceServer).GetMany(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PriceService_ServiceDesc is the grpc.ServiceDesc for PriceService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var PriceService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "measure.PriceService",
+	HandlerType: (*PriceServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _PriceService_Get_Handler,
+		},
+		{
+			MethodName: "GetMany",
+			Handler:    _PriceService_GetMany_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "core.proto",
+}
+
 // DivideServiceClient is the client API for DivideService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
