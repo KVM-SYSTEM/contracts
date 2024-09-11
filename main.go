@@ -12,7 +12,7 @@ func main() {
 		"protoc",
 		"-I", "proto/core_server",
 		"proto/core_server/core.proto",
-		"--go_out=./gen/go/core_server/core.proto",
+		"--go_out=./gen/go/core_server",
 		"--go_opt=paths=source_relative",
 		"--go-grpc_out=./gen/go/core_server",
 		"--go-grpc_opt=paths=source_relative",
