@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package measure;
 
-option go_package = "gen/go/core_server";
+option go_package = "github.com/KVM-SYSTEM/contracts;core_server";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
