@@ -376,18 +376,20 @@ var PriceService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	DivideService_App_FullMethodName     = "/measure.DivideService/App"
+	DivideService_Add_FullMethodName     = "/measure.DivideService/Add"
 	DivideService_GetMany_FullMethodName = "/measure.DivideService/GetMany"
 	DivideService_Get_FullMethodName     = "/measure.DivideService/Get"
+	DivideService_Delete_FullMethodName  = "/measure.DivideService/Delete"
 )
 
 // DivideServiceClient is the client API for DivideService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DivideServiceClient interface {
-	App(ctx context.Context, in *AddDivideReq, opts ...grpc.CallOption) (*AddDivideReq, error)
+	Add(ctx context.Context, in *AddDivideReq, opts ...grpc.CallOption) (*AddDivideRes, error)
 	GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyDividesRes, error)
 	Get(ctx context.Context, in *GetDivideReq, opts ...grpc.CallOption) (*GetDivideRes, error)
+	Delete(ctx context.Context, in *DeleteDivideReq, opts ...grpc.CallOption) (*DeleteDivideRes, error)
 }
 
 type divideServiceClient struct {
@@ -398,10 +400,10 @@ func NewDivideServiceClient(cc grpc.ClientConnInterface) DivideServiceClient {
 	return &divideServiceClient{cc}
 }
 
-func (c *divideServiceClient) App(ctx context.Context, in *AddDivideReq, opts ...grpc.CallOption) (*AddDivideReq, error) {
+func (c *divideServiceClient) Add(ctx context.Context, in *AddDivideReq, opts ...grpc.CallOption) (*AddDivideRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddDivideReq)
-	err := c.cc.Invoke(ctx, DivideService_App_FullMethodName, in, out, cOpts...)
+	out := new(AddDivideRes)
+	err := c.cc.Invoke(ctx, DivideService_Add_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -428,13 +430,24 @@ func (c *divideServiceClient) Get(ctx context.Context, in *GetDivideReq, opts ..
 	return out, nil
 }
 
+func (c *divideServiceClient) Delete(ctx context.Context, in *DeleteDivideReq, opts ...grpc.CallOption) (*DeleteDivideRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteDivideRes)
+	err := c.cc.Invoke(ctx, DivideService_Delete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DivideServiceServer is the server API for DivideService service.
 // All implementations must embed UnimplementedDivideServiceServer
 // for forward compatibility.
 type DivideServiceServer interface {
-	App(context.Context, *AddDivideReq) (*AddDivideReq, error)
+	Add(context.Context, *AddDivideReq) (*AddDivideRes, error)
 	GetMany(context.Context, *emptypb.Empty) (*GetManyDividesRes, error)
 	Get(context.Context, *GetDivideReq) (*GetDivideRes, error)
+	Delete(context.Context, *DeleteDivideReq) (*DeleteDivideRes, error)
 	mustEmbedUnimplementedDivideServiceServer()
 }
 
@@ -445,14 +458,17 @@ type DivideServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDivideServiceServer struct{}
 
-func (UnimplementedDivideServiceServer) App(context.Context, *AddDivideReq) (*AddDivideReq, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method App not implemented")
+func (UnimplementedDivideServiceServer) Add(context.Context, *AddDivideReq) (*AddDivideRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
 func (UnimplementedDivideServiceServer) GetMany(context.Context, *emptypb.Empty) (*GetManyDividesRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMany not implemented")
 }
 func (UnimplementedDivideServiceServer) Get(context.Context, *GetDivideReq) (*GetDivideRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedDivideServiceServer) Delete(context.Context, *DeleteDivideReq) (*DeleteDivideRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedDivideServiceServer) mustEmbedUnimplementedDivideServiceServer() {}
 func (UnimplementedDivideServiceServer) testEmbeddedByValue()                       {}
@@ -475,20 +491,20 @@ func RegisterDivideServiceServer(s grpc.ServiceRegistrar, srv DivideServiceServe
 	s.RegisterService(&DivideService_ServiceDesc, srv)
 }
 
-func _DivideService_App_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DivideService_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddDivideReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DivideServiceServer).App(ctx, in)
+		return srv.(DivideServiceServer).Add(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DivideService_App_FullMethodName,
+		FullMethod: DivideService_Add_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DivideServiceServer).App(ctx, req.(*AddDivideReq))
+		return srv.(DivideServiceServer).Add(ctx, req.(*AddDivideReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -529,6 +545,24 @@ func _DivideService_Get_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DivideService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteDivideReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DivideServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DivideService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DivideServiceServer).Delete(ctx, req.(*DeleteDivideReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DivideService_ServiceDesc is the grpc.ServiceDesc for DivideService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -537,8 +571,8 @@ var DivideService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DivideServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "App",
-			Handler:    _DivideService_App_Handler,
+			MethodName: "Add",
+			Handler:    _DivideService_Add_Handler,
 		},
 		{
 			MethodName: "GetMany",
@@ -547,6 +581,10 @@ var DivideService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _DivideService_Get_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _DivideService_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
