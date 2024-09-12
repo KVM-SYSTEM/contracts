@@ -4,7 +4,7 @@ package measure;
 
 option go_package = "https://github.com/KVM-SYSTEM/estimates;ssov1";
 
-import "models/material.proto";
+import "estimate_server/models/material.proto";
 
 message GetReq {
     string id = 1;

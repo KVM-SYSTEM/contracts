@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package measure;
 
-option go_package = "https://github.com/KVM-SYSTEM/contracts;core_server";
+option go_package = "github.com/KVM-SYSTEM/contracts;core_server";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
@@ -99,6 +99,18 @@ message AddMaterialRes {
     string _id = 1;
 }
 
+//Add Divide
+message AddDivideReq{
+    string title = 1;
+    string user = 2;
+    repeated string priceSections = 3;
+    string index = 4;
+}
+
+message AddDivideRes{
+    string id = 1;
+}
+
 //Delete Material 
 message DeleteMaterialReq {
     string _id = 1;
@@ -160,6 +172,7 @@ service PriceService{
 }
 
 service DivideService{
+    rpc App(AddDivideReq) returns(AddDivideReq);
     rpc GetMany(google.protobuf.Empty) returns (GetManyDividesRes);
     rpc Get(GetDivideReq) returns (GetDivideRes);
 }
