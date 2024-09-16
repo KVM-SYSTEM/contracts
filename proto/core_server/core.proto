@@ -125,6 +125,15 @@ message DeleteMaterialReq {
     string _id = 1;
 }
 
+
+// Get Measure
+message GetMeasureReq{
+    string XId = 1;
+}
+
+message GetMeasureRes{
+    Measure measure = 1;
+}
 //Get prices
 
 message GetPriceReq {
@@ -203,4 +212,8 @@ service SectionService{
 
 service UserService {
     rpc CheckAuth(CheckAuthReq) returns (CheckAuthRes);
+}
+
+service MeasureService{
+    rpc Get(GetMeasureReq) returns (GetMeasureRes);
 }
