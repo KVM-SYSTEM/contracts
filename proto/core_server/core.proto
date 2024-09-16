@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 //Models
 
+
 message Measure {
     string _id = 1;
     string name = 2;
@@ -15,6 +16,7 @@ message Measure {
     google.protobuf.Timestamp createdAt = 4;
     google.protobuf.Timestamp updatedAt = 5; 
 }
+
 
 message Material {
     string _id = 1;
@@ -42,12 +44,16 @@ message Price {
     int64 markup = 7;
     bool isDefault = 8;
 }
+
 message Divide {
     string _id = 1;
-    string title = 2; 
-    string user = 3; 
-    repeated string priceSections = 4; 
-    string index = 5;
+    string title = 2;
+    string imageId = 3;
+    repeated Price prices = 4;
+    float costOfWork = 5;
+    float costOfMaterials = 6;
+    float sum = 7;
+    repeated string pricesSections = 8;
 }
 message Section {
     string _id = 1;
@@ -100,11 +106,14 @@ message AddMaterialRes {
 }
 
 //Add Divide
-message AddDivideReq{
-    string title = 1;
-    string user = 2;
-    repeated string priceSections = 3;
-    string index = 4;
+message AddDivideReq {
+    string title = 3;
+    repeated Price prices = 4;
+    float costOfWork = 5;
+    float costOfMaterials = 6;
+    float sum = 7;
+    string img = 2;
+    string pricesSections = 8;
 }
 
 message AddDivideRes{
@@ -116,6 +125,15 @@ message DeleteMaterialReq {
     string _id = 1;
 }
 
+
+// Get Measure
+message GetMeasureReq{
+    string XId = 1;
+}
+
+message GetMeasureRes{
+    Measure measure = 1;
+}
 //Get prices
 
 message GetPriceReq {
@@ -137,9 +155,18 @@ message GetManyDividesRes {
 message GetDivideReq {
     string _id = 1;
 }
+
 message GetDivideRes {
     Divide divide = 1;
 };
+
+message DeleteDivideReq{
+    string id = 1;
+}
+
+message DeleteDivideRes{
+    bool success = 1;
+}
 
 //Get Sections
 message GetManySectionsRes {
@@ -172,9 +199,10 @@ service PriceService{
 }
 
 service DivideService{
-    rpc App(AddDivideReq) returns(AddDivideReq);
+    rpc Add(AddDivideReq) returns(AddDivideRes);
     rpc GetMany(google.protobuf.Empty) returns (GetManyDividesRes);
     rpc Get(GetDivideReq) returns (GetDivideRes);
+    rpc Delete(DeleteDivideReq) returns (DeleteDivideRes);
 }
 
 service SectionService{
@@ -184,4 +212,8 @@ service SectionService{
 
 service UserService {
     rpc CheckAuth(CheckAuthReq) returns (CheckAuthRes);
+}
+
+service MeasureService{
+    rpc Get(GetMeasureReq) returns (GetMeasureRes);
 }
