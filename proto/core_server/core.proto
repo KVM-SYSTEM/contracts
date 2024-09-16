@@ -128,7 +128,7 @@ message DeleteMaterialReq {
 
 // Get Measure
 message GetMeasureReq{
-    string XId = 1;
+    string _id = 1;
 }
 
 message GetMeasureRes{
