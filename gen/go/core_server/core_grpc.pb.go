@@ -20,10 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MaterialService_Add_FullMethodName     = "/measure.MaterialService/Add"
-	MaterialService_Get_FullMethodName     = "/measure.MaterialService/Get"
-	MaterialService_GetMany_FullMethodName = "/measure.MaterialService/GetMany"
-	MaterialService_Delete_FullMethodName  = "/measure.MaterialService/Delete"
+	MaterialService_Add_FullMethodName     = "/core_proto.MaterialService/Add"
+	MaterialService_Get_FullMethodName     = "/core_proto.MaterialService/Get"
+	MaterialService_GetMany_FullMethodName = "/core_proto.MaterialService/GetMany"
+	MaterialService_Delete_FullMethodName  = "/core_proto.MaterialService/Delete"
 )
 
 // MaterialServiceClient is the client API for MaterialService service.
@@ -211,7 +211,7 @@ func _MaterialService_Delete_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MaterialService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "measure.MaterialService",
+	ServiceName: "core_proto.MaterialService",
 	HandlerType: (*MaterialServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -236,8 +236,8 @@ var MaterialService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	PriceService_Get_FullMethodName     = "/measure.PriceService/Get"
-	PriceService_GetMany_FullMethodName = "/measure.PriceService/GetMany"
+	PriceService_Get_FullMethodName     = "/core_proto.PriceService/Get"
+	PriceService_GetMany_FullMethodName = "/core_proto.PriceService/GetMany"
 )
 
 // PriceServiceClient is the client API for PriceService service.
@@ -359,7 +359,7 @@ func _PriceService_GetMany_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PriceService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "measure.PriceService",
+	ServiceName: "core_proto.PriceService",
 	HandlerType: (*PriceServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -376,10 +376,10 @@ var PriceService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	DivideService_Add_FullMethodName     = "/measure.DivideService/Add"
-	DivideService_GetMany_FullMethodName = "/measure.DivideService/GetMany"
-	DivideService_Get_FullMethodName     = "/measure.DivideService/Get"
-	DivideService_Delete_FullMethodName  = "/measure.DivideService/Delete"
+	DivideService_Add_FullMethodName     = "/core_proto.DivideService/Add"
+	DivideService_GetMany_FullMethodName = "/core_proto.DivideService/GetMany"
+	DivideService_Get_FullMethodName     = "/core_proto.DivideService/Get"
+	DivideService_Delete_FullMethodName  = "/core_proto.DivideService/Delete"
 )
 
 // DivideServiceClient is the client API for DivideService service.
@@ -567,7 +567,7 @@ func _DivideService_Delete_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DivideService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "measure.DivideService",
+	ServiceName: "core_proto.DivideService",
 	HandlerType: (*DivideServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -592,8 +592,8 @@ var DivideService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	SectionService_GetMany_FullMethodName = "/measure.SectionService/GetMany"
-	SectionService_Get_FullMethodName     = "/measure.SectionService/Get"
+	SectionService_GetMany_FullMethodName = "/core_proto.SectionService/GetMany"
+	SectionService_Get_FullMethodName     = "/core_proto.SectionService/Get"
 )
 
 // SectionServiceClient is the client API for SectionService service.
@@ -715,7 +715,7 @@ func _SectionService_Get_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SectionService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "measure.SectionService",
+	ServiceName: "core_proto.SectionService",
 	HandlerType: (*SectionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -732,7 +732,7 @@ var SectionService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	UserService_CheckAuth_FullMethodName = "/measure.UserService/CheckAuth"
+	UserService_CheckAuth_FullMethodName = "/core_proto.UserService/CheckAuth"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -821,7 +821,7 @@ func _UserService_CheckAuth_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "measure.UserService",
+	ServiceName: "core_proto.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -834,7 +834,7 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	MeasureService_Get_FullMethodName = "/measure.MeasureService/Get"
+	MeasureService_Get_FullMethodName = "/core_proto.MeasureService/Get"
 )
 
 // MeasureServiceClient is the client API for MeasureService service.
@@ -923,12 +923,190 @@ func _MeasureService_Get_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MeasureService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "measure.MeasureService",
+	ServiceName: "core_proto.MeasureService",
 	HandlerType: (*MeasureServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Get",
 			Handler:    _MeasureService_Get_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "core.proto",
+}
+
+const (
+	ObjectService_Get_FullMethodName        = "/core_proto.ObjectService/Get"
+	ObjectService_GetDefault_FullMethodName = "/core_proto.ObjectService/GetDefault"
+	ObjectService_Update_FullMethodName     = "/core_proto.ObjectService/Update"
+)
+
+// ObjectServiceClient is the client API for ObjectService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ObjectServiceClient interface {
+	Get(ctx context.Context, in *GetObjectReq, opts ...grpc.CallOption) (*GetObjectRes, error)
+	GetDefault(ctx context.Context, in *GetDefaultObjectReq, opts ...grpc.CallOption) (*GetDefaultObjectRes, error)
+	Update(ctx context.Context, in *UpdateObjectReq, opts ...grpc.CallOption) (*UpdateObjectRes, error)
+}
+
+type objectServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewObjectServiceClient(cc grpc.ClientConnInterface) ObjectServiceClient {
+	return &objectServiceClient{cc}
+}
+
+func (c *objectServiceClient) Get(ctx context.Context, in *GetObjectReq, opts ...grpc.CallOption) (*GetObjectRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetObjectRes)
+	err := c.cc.Invoke(ctx, ObjectService_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectServiceClient) GetDefault(ctx context.Context, in *GetDefaultObjectReq, opts ...grpc.CallOption) (*GetDefaultObjectRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDefaultObjectRes)
+	err := c.cc.Invoke(ctx, ObjectService_GetDefault_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *objectServiceClient) Update(ctx context.Context, in *UpdateObjectReq, opts ...grpc.CallOption) (*UpdateObjectRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateObjectRes)
+	err := c.cc.Invoke(ctx, ObjectService_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ObjectServiceServer is the server API for ObjectService service.
+// All implementations must embed UnimplementedObjectServiceServer
+// for forward compatibility.
+type ObjectServiceServer interface {
+	Get(context.Context, *GetObjectReq) (*GetObjectRes, error)
+	GetDefault(context.Context, *GetDefaultObjectReq) (*GetDefaultObjectRes, error)
+	Update(context.Context, *UpdateObjectReq) (*UpdateObjectRes, error)
+	mustEmbedUnimplementedObjectServiceServer()
+}
+
+// UnimplementedObjectServiceServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedObjectServiceServer struct{}
+
+func (UnimplementedObjectServiceServer) Get(context.Context, *GetObjectReq) (*GetObjectRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedObjectServiceServer) GetDefault(context.Context, *GetDefaultObjectReq) (*GetDefaultObjectRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDefault not implemented")
+}
+func (UnimplementedObjectServiceServer) Update(context.Context, *UpdateObjectReq) (*UpdateObjectRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedObjectServiceServer) mustEmbedUnimplementedObjectServiceServer() {}
+func (UnimplementedObjectServiceServer) testEmbeddedByValue()                       {}
+
+// UnsafeObjectServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ObjectServiceServer will
+// result in compilation errors.
+type UnsafeObjectServiceServer interface {
+	mustEmbedUnimplementedObjectServiceServer()
+}
+
+func RegisterObjectServiceServer(s grpc.ServiceRegistrar, srv ObjectServiceServer) {
+	// If the following call pancis, it indicates UnimplementedObjectServiceServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&ObjectService_ServiceDesc, srv)
+}
+
+func _ObjectService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetObjectReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectService_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectServiceServer).Get(ctx, req.(*GetObjectReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectService_GetDefault_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDefaultObjectReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectServiceServer).GetDefault(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectService_GetDefault_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectServiceServer).GetDefault(ctx, req.(*GetDefaultObjectReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ObjectService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateObjectReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ObjectServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ObjectService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ObjectServiceServer).Update(ctx, req.(*UpdateObjectReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ObjectService_ServiceDesc is the grpc.ServiceDesc for ObjectService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ObjectService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "core_proto.ObjectService",
+	HandlerType: (*ObjectServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _ObjectService_Get_Handler,
+		},
+		{
+			MethodName: "GetDefault",
+			Handler:    _ObjectService_GetDefault_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _ObjectService_Update_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
