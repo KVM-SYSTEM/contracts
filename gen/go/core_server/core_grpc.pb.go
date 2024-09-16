@@ -20,10 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MaterialService_Add_FullMethodName     = "/core_proto.MaterialService/Add"
-	MaterialService_Get_FullMethodName     = "/core_proto.MaterialService/Get"
-	MaterialService_GetMany_FullMethodName = "/core_proto.MaterialService/GetMany"
-	MaterialService_Delete_FullMethodName  = "/core_proto.MaterialService/Delete"
+	MaterialService_Add_FullMethodName     = "/measure.MaterialService/Add"
+	MaterialService_Get_FullMethodName     = "/measure.MaterialService/Get"
+	MaterialService_GetMany_FullMethodName = "/measure.MaterialService/GetMany"
+	MaterialService_Delete_FullMethodName  = "/measure.MaterialService/Delete"
 )
 
 // MaterialServiceClient is the client API for MaterialService service.
@@ -211,7 +211,7 @@ func _MaterialService_Delete_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MaterialService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "core_proto.MaterialService",
+	ServiceName: "measure.MaterialService",
 	HandlerType: (*MaterialServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -236,8 +236,8 @@ var MaterialService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	PriceService_Get_FullMethodName     = "/core_proto.PriceService/Get"
-	PriceService_GetMany_FullMethodName = "/core_proto.PriceService/GetMany"
+	PriceService_Get_FullMethodName     = "/measure.PriceService/Get"
+	PriceService_GetMany_FullMethodName = "/measure.PriceService/GetMany"
 )
 
 // PriceServiceClient is the client API for PriceService service.
@@ -359,7 +359,7 @@ func _PriceService_GetMany_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PriceService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "core_proto.PriceService",
+	ServiceName: "measure.PriceService",
 	HandlerType: (*PriceServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -376,10 +376,10 @@ var PriceService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	DivideService_Add_FullMethodName     = "/core_proto.DivideService/Add"
-	DivideService_GetMany_FullMethodName = "/core_proto.DivideService/GetMany"
-	DivideService_Get_FullMethodName     = "/core_proto.DivideService/Get"
-	DivideService_Delete_FullMethodName  = "/core_proto.DivideService/Delete"
+	DivideService_Add_FullMethodName     = "/measure.DivideService/Add"
+	DivideService_GetMany_FullMethodName = "/measure.DivideService/GetMany"
+	DivideService_Get_FullMethodName     = "/measure.DivideService/Get"
+	DivideService_Delete_FullMethodName  = "/measure.DivideService/Delete"
 )
 
 // DivideServiceClient is the client API for DivideService service.
@@ -567,7 +567,7 @@ func _DivideService_Delete_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DivideService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "core_proto.DivideService",
+	ServiceName: "measure.DivideService",
 	HandlerType: (*DivideServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -592,8 +592,8 @@ var DivideService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	SectionService_GetMany_FullMethodName = "/core_proto.SectionService/GetMany"
-	SectionService_Get_FullMethodName     = "/core_proto.SectionService/Get"
+	SectionService_GetMany_FullMethodName = "/measure.SectionService/GetMany"
+	SectionService_Get_FullMethodName     = "/measure.SectionService/Get"
 )
 
 // SectionServiceClient is the client API for SectionService service.
@@ -715,7 +715,7 @@ func _SectionService_Get_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SectionService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "core_proto.SectionService",
+	ServiceName: "measure.SectionService",
 	HandlerType: (*SectionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -732,7 +732,7 @@ var SectionService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	UserService_CheckAuth_FullMethodName = "/core_proto.UserService/CheckAuth"
+	UserService_CheckAuth_FullMethodName = "/measure.UserService/CheckAuth"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -821,7 +821,7 @@ func _UserService_CheckAuth_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "core_proto.UserService",
+	ServiceName: "measure.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -834,7 +834,7 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	MeasureService_Get_FullMethodName = "/core_proto.MeasureService/Get"
+	MeasureService_Get_FullMethodName = "/measure.MeasureService/Get"
 )
 
 // MeasureServiceClient is the client API for MeasureService service.
@@ -923,7 +923,7 @@ func _MeasureService_Get_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MeasureService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "core_proto.MeasureService",
+	ServiceName: "measure.MeasureService",
 	HandlerType: (*MeasureServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -936,9 +936,9 @@ var MeasureService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	ObjectService_Get_FullMethodName        = "/core_proto.ObjectService/Get"
-	ObjectService_GetDefault_FullMethodName = "/core_proto.ObjectService/GetDefault"
-	ObjectService_Update_FullMethodName     = "/core_proto.ObjectService/Update"
+	ObjectService_Get_FullMethodName        = "/measure.ObjectService/Get"
+	ObjectService_GetDefault_FullMethodName = "/measure.ObjectService/GetDefault"
+	ObjectService_Update_FullMethodName     = "/measure.ObjectService/Update"
 )
 
 // ObjectServiceClient is the client API for ObjectService service.
@@ -1093,7 +1093,7 @@ func _ObjectService_Update_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ObjectService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "core_proto.ObjectService",
+	ServiceName: "measure.ObjectService",
 	HandlerType: (*ObjectServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

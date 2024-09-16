@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package core_proto;
+package measure;
 
 option go_package = "github.com/KVM-SYSTEM/contracts;core_server";
 
