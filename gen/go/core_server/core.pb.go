@@ -1182,6 +1182,101 @@ func (x *DeleteMaterialReq) GetXId() string {
 	return ""
 }
 
+// Get Measure
+type GetMeasureReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	XId string `protobuf:"bytes,1,opt,name=XId,proto3" json:"XId,omitempty"`
+}
+
+func (x *GetMeasureReq) Reset() {
+	*x = GetMeasureReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_core_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetMeasureReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetMeasureReq) ProtoMessage() {}
+
+func (x *GetMeasureReq) ProtoReflect() protoreflect.Message {
+	mi := &file_core_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetMeasureReq.ProtoReflect.Descriptor instead.
+func (*GetMeasureReq) Descriptor() ([]byte, []int) {
+	return file_core_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetMeasureReq) GetXId() string {
+	if x != nil {
+		return x.XId
+	}
+	return ""
+}
+
+type GetMeasureRes struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Measure *Measure `protobuf:"bytes,1,opt,name=measure,proto3" json:"measure,omitempty"`
+}
+
+func (x *GetMeasureRes) Reset() {
+	*x = GetMeasureRes{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_core_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetMeasureRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetMeasureRes) ProtoMessage() {}
+
+func (x *GetMeasureRes) ProtoReflect() protoreflect.Message {
+	mi := &file_core_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetMeasureRes.ProtoReflect.Descriptor instead.
+func (*GetMeasureRes) Descriptor() ([]byte, []int) {
+	return file_core_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetMeasureRes) GetMeasure() *Measure {
+	if x != nil {
+		return x.Measure
+	}
+	return nil
+}
+
 type GetPriceReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1193,7 +1288,7 @@ type GetPriceReq struct {
 func (x *GetPriceReq) Reset() {
 	*x = GetPriceReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[15]
+		mi := &file_core_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1206,7 +1301,7 @@ func (x *GetPriceReq) String() string {
 func (*GetPriceReq) ProtoMessage() {}
 
 func (x *GetPriceReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[15]
+	mi := &file_core_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1219,7 +1314,7 @@ func (x *GetPriceReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPriceReq.ProtoReflect.Descriptor instead.
 func (*GetPriceReq) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{15}
+	return file_core_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetPriceReq) GetXId() string {
@@ -1240,7 +1335,7 @@ type GetPriceRes struct {
 func (x *GetPriceRes) Reset() {
 	*x = GetPriceRes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[16]
+		mi := &file_core_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1253,7 +1348,7 @@ func (x *GetPriceRes) String() string {
 func (*GetPriceRes) ProtoMessage() {}
 
 func (x *GetPriceRes) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[16]
+	mi := &file_core_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1266,7 +1361,7 @@ func (x *GetPriceRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPriceRes.ProtoReflect.Descriptor instead.
 func (*GetPriceRes) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{16}
+	return file_core_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetPriceRes) GetPrice() *Price {
@@ -1287,7 +1382,7 @@ type GetManyPricesRes struct {
 func (x *GetManyPricesRes) Reset() {
 	*x = GetManyPricesRes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[17]
+		mi := &file_core_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1300,7 +1395,7 @@ func (x *GetManyPricesRes) String() string {
 func (*GetManyPricesRes) ProtoMessage() {}
 
 func (x *GetManyPricesRes) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[17]
+	mi := &file_core_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1313,7 +1408,7 @@ func (x *GetManyPricesRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetManyPricesRes.ProtoReflect.Descriptor instead.
 func (*GetManyPricesRes) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{17}
+	return file_core_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetManyPricesRes) GetPrices() []*Price {
@@ -1335,7 +1430,7 @@ type GetManyDividesRes struct {
 func (x *GetManyDividesRes) Reset() {
 	*x = GetManyDividesRes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[18]
+		mi := &file_core_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1348,7 +1443,7 @@ func (x *GetManyDividesRes) String() string {
 func (*GetManyDividesRes) ProtoMessage() {}
 
 func (x *GetManyDividesRes) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[18]
+	mi := &file_core_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1361,7 +1456,7 @@ func (x *GetManyDividesRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetManyDividesRes.ProtoReflect.Descriptor instead.
 func (*GetManyDividesRes) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{18}
+	return file_core_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *GetManyDividesRes) GetDivides() []*Divide {
@@ -1382,7 +1477,7 @@ type GetDivideReq struct {
 func (x *GetDivideReq) Reset() {
 	*x = GetDivideReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[19]
+		mi := &file_core_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1395,7 +1490,7 @@ func (x *GetDivideReq) String() string {
 func (*GetDivideReq) ProtoMessage() {}
 
 func (x *GetDivideReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[19]
+	mi := &file_core_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1408,7 +1503,7 @@ func (x *GetDivideReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDivideReq.ProtoReflect.Descriptor instead.
 func (*GetDivideReq) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{19}
+	return file_core_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetDivideReq) GetXId() string {
@@ -1429,7 +1524,7 @@ type GetDivideRes struct {
 func (x *GetDivideRes) Reset() {
 	*x = GetDivideRes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[20]
+		mi := &file_core_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1442,7 +1537,7 @@ func (x *GetDivideRes) String() string {
 func (*GetDivideRes) ProtoMessage() {}
 
 func (x *GetDivideRes) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[20]
+	mi := &file_core_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1455,7 +1550,7 @@ func (x *GetDivideRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDivideRes.ProtoReflect.Descriptor instead.
 func (*GetDivideRes) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{20}
+	return file_core_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GetDivideRes) GetDivide() *Divide {
@@ -1476,7 +1571,7 @@ type DeleteDivideReq struct {
 func (x *DeleteDivideReq) Reset() {
 	*x = DeleteDivideReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[21]
+		mi := &file_core_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1489,7 +1584,7 @@ func (x *DeleteDivideReq) String() string {
 func (*DeleteDivideReq) ProtoMessage() {}
 
 func (x *DeleteDivideReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[21]
+	mi := &file_core_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1502,7 +1597,7 @@ func (x *DeleteDivideReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteDivideReq.ProtoReflect.Descriptor instead.
 func (*DeleteDivideReq) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{21}
+	return file_core_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *DeleteDivideReq) GetId() string {
@@ -1523,7 +1618,7 @@ type DeleteDivideRes struct {
 func (x *DeleteDivideRes) Reset() {
 	*x = DeleteDivideRes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[22]
+		mi := &file_core_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1536,7 +1631,7 @@ func (x *DeleteDivideRes) String() string {
 func (*DeleteDivideRes) ProtoMessage() {}
 
 func (x *DeleteDivideRes) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[22]
+	mi := &file_core_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1549,7 +1644,7 @@ func (x *DeleteDivideRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteDivideRes.ProtoReflect.Descriptor instead.
 func (*DeleteDivideRes) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{22}
+	return file_core_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *DeleteDivideRes) GetSuccess() bool {
@@ -1571,7 +1666,7 @@ type GetManySectionsRes struct {
 func (x *GetManySectionsRes) Reset() {
 	*x = GetManySectionsRes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[23]
+		mi := &file_core_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1584,7 +1679,7 @@ func (x *GetManySectionsRes) String() string {
 func (*GetManySectionsRes) ProtoMessage() {}
 
 func (x *GetManySectionsRes) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[23]
+	mi := &file_core_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1597,7 +1692,7 @@ func (x *GetManySectionsRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetManySectionsRes.ProtoReflect.Descriptor instead.
 func (*GetManySectionsRes) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{23}
+	return file_core_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *GetManySectionsRes) GetSections() []*Section {
@@ -1618,7 +1713,7 @@ type GetSectionReq struct {
 func (x *GetSectionReq) Reset() {
 	*x = GetSectionReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[24]
+		mi := &file_core_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1631,7 +1726,7 @@ func (x *GetSectionReq) String() string {
 func (*GetSectionReq) ProtoMessage() {}
 
 func (x *GetSectionReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[24]
+	mi := &file_core_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1644,7 +1739,7 @@ func (x *GetSectionReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSectionReq.ProtoReflect.Descriptor instead.
 func (*GetSectionReq) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{24}
+	return file_core_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GetSectionReq) GetXId() string {
@@ -1665,7 +1760,7 @@ type GetSectionRes struct {
 func (x *GetSectionRes) Reset() {
 	*x = GetSectionRes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[25]
+		mi := &file_core_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1678,7 +1773,7 @@ func (x *GetSectionRes) String() string {
 func (*GetSectionRes) ProtoMessage() {}
 
 func (x *GetSectionRes) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[25]
+	mi := &file_core_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1691,7 +1786,7 @@ func (x *GetSectionRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSectionRes.ProtoReflect.Descriptor instead.
 func (*GetSectionRes) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{25}
+	return file_core_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *GetSectionRes) GetSection() *Section {
@@ -1712,7 +1807,7 @@ type CheckAuthReq struct {
 func (x *CheckAuthReq) Reset() {
 	*x = CheckAuthReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[26]
+		mi := &file_core_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1725,7 +1820,7 @@ func (x *CheckAuthReq) String() string {
 func (*CheckAuthReq) ProtoMessage() {}
 
 func (x *CheckAuthReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[26]
+	mi := &file_core_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1738,7 +1833,7 @@ func (x *CheckAuthReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckAuthReq.ProtoReflect.Descriptor instead.
 func (*CheckAuthReq) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{26}
+	return file_core_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *CheckAuthReq) GetUser() *User {
@@ -1759,7 +1854,7 @@ type CheckAuthRes struct {
 func (x *CheckAuthRes) Reset() {
 	*x = CheckAuthRes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_core_proto_msgTypes[27]
+		mi := &file_core_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1772,7 +1867,7 @@ func (x *CheckAuthRes) String() string {
 func (*CheckAuthRes) ProtoMessage() {}
 
 func (x *CheckAuthRes) ProtoReflect() protoreflect.Message {
-	mi := &file_core_proto_msgTypes[27]
+	mi := &file_core_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1785,7 +1880,7 @@ func (x *CheckAuthRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckAuthRes.ProtoReflect.Descriptor instead.
 func (*CheckAuthRes) Descriptor() ([]byte, []int) {
-	return file_core_proto_rawDescGZIP(), []int{27}
+	return file_core_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *CheckAuthRes) GetIsAuth() bool {
@@ -1950,7 +2045,13 @@ var file_core_proto_rawDesc = []byte{
 	0x52, 0x65, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x02, 0x69, 0x64, 0x22, 0x24, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x61, 0x74,
 	0x65, 0x72, 0x69, 0x61, 0x6c, 0x52, 0x65, 0x71, 0x12, 0x0f, 0x0a, 0x03, 0x5f, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x49, 0x64, 0x22, 0x1e, 0x0a, 0x0b, 0x47, 0x65, 0x74,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x49, 0x64, 0x22, 0x21, 0x0a, 0x0d, 0x47, 0x65, 0x74,
+	0x4d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x58, 0x49,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x58, 0x49, 0x64, 0x22, 0x3b, 0x0a, 0x0d,
+	0x47, 0x65, 0x74, 0x4d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x52, 0x65, 0x73, 0x12, 0x2a, 0x0a,
+	0x07, 0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10,
+	0x2e, 0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x2e, 0x4d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65,
+	0x52, 0x07, 0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x22, 0x1e, 0x0a, 0x0b, 0x47, 0x65, 0x74,
 	0x50, 0x72, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x12, 0x0f, 0x0a, 0x03, 0x5f, 0x69, 0x64, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x49, 0x64, 0x22, 0x33, 0x0a, 0x0b, 0x47, 0x65, 0x74,
 	0x50, 0x72, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73, 0x12, 0x24, 0x0a, 0x05, 0x70, 0x72, 0x69, 0x63,
@@ -2043,10 +2144,15 @@ var file_core_proto_rawDesc = []byte{
 	0x63, 0x6b, 0x41, 0x75, 0x74, 0x68, 0x12, 0x15, 0x2e, 0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65,
 	0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x41, 0x75, 0x74, 0x68, 0x52, 0x65, 0x71, 0x1a, 0x15, 0x2e,
 	0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x41, 0x75, 0x74,
-	0x68, 0x52, 0x65, 0x73, 0x42, 0x2d, 0x5a, 0x2b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
-	0x6f, 0x6d, 0x2f, 0x4b, 0x56, 0x4d, 0x2d, 0x53, 0x59, 0x53, 0x54, 0x45, 0x4d, 0x2f, 0x63, 0x6f,
-	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x73, 0x3b, 0x63, 0x6f, 0x72, 0x65, 0x5f, 0x73, 0x65, 0x72,
-	0x76, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x68, 0x52, 0x65, 0x73, 0x32, 0x47, 0x0a, 0x0e, 0x4d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x35, 0x0a, 0x03, 0x47, 0x65, 0x74, 0x12, 0x16, 0x2e,
+	0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x65, 0x61, 0x73, 0x75,
+	0x72, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x16, 0x2e, 0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x2e,
+	0x47, 0x65, 0x74, 0x4d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x52, 0x65, 0x73, 0x42, 0x2d, 0x5a,
+	0x2b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x4b, 0x56, 0x4d, 0x2d,
+	0x53, 0x59, 0x53, 0x54, 0x45, 0x4d, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x73,
+	0x3b, 0x63, 0x6f, 0x72, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2061,7 +2167,7 @@ func file_core_proto_rawDescGZIP() []byte {
 	return file_core_proto_rawDescData
 }
 
-var file_core_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_core_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
 var file_core_proto_goTypes = []any{
 	(*Measure)(nil),               // 0: measure.Measure
 	(*Material)(nil),              // 1: measure.Material
@@ -2078,75 +2184,80 @@ var file_core_proto_goTypes = []any{
 	(*AddDivideReq)(nil),          // 12: measure.AddDivideReq
 	(*AddDivideRes)(nil),          // 13: measure.AddDivideRes
 	(*DeleteMaterialReq)(nil),     // 14: measure.DeleteMaterialReq
-	(*GetPriceReq)(nil),           // 15: measure.GetPriceReq
-	(*GetPriceRes)(nil),           // 16: measure.GetPriceRes
-	(*GetManyPricesRes)(nil),      // 17: measure.GetManyPricesRes
-	(*GetManyDividesRes)(nil),     // 18: measure.GetManyDividesRes
-	(*GetDivideReq)(nil),          // 19: measure.GetDivideReq
-	(*GetDivideRes)(nil),          // 20: measure.GetDivideRes
-	(*DeleteDivideReq)(nil),       // 21: measure.DeleteDivideReq
-	(*DeleteDivideRes)(nil),       // 22: measure.DeleteDivideRes
-	(*GetManySectionsRes)(nil),    // 23: measure.GetManySectionsRes
-	(*GetSectionReq)(nil),         // 24: measure.GetSectionReq
-	(*GetSectionRes)(nil),         // 25: measure.GetSectionRes
-	(*CheckAuthReq)(nil),          // 26: measure.CheckAuthReq
-	(*CheckAuthRes)(nil),          // 27: measure.CheckAuthRes
-	(*timestamppb.Timestamp)(nil), // 28: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),         // 29: google.protobuf.Empty
+	(*GetMeasureReq)(nil),         // 15: measure.GetMeasureReq
+	(*GetMeasureRes)(nil),         // 16: measure.GetMeasureRes
+	(*GetPriceReq)(nil),           // 17: measure.GetPriceReq
+	(*GetPriceRes)(nil),           // 18: measure.GetPriceRes
+	(*GetManyPricesRes)(nil),      // 19: measure.GetManyPricesRes
+	(*GetManyDividesRes)(nil),     // 20: measure.GetManyDividesRes
+	(*GetDivideReq)(nil),          // 21: measure.GetDivideReq
+	(*GetDivideRes)(nil),          // 22: measure.GetDivideRes
+	(*DeleteDivideReq)(nil),       // 23: measure.DeleteDivideReq
+	(*DeleteDivideRes)(nil),       // 24: measure.DeleteDivideRes
+	(*GetManySectionsRes)(nil),    // 25: measure.GetManySectionsRes
+	(*GetSectionReq)(nil),         // 26: measure.GetSectionReq
+	(*GetSectionRes)(nil),         // 27: measure.GetSectionRes
+	(*CheckAuthReq)(nil),          // 28: measure.CheckAuthReq
+	(*CheckAuthRes)(nil),          // 29: measure.CheckAuthRes
+	(*timestamppb.Timestamp)(nil), // 30: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),         // 31: google.protobuf.Empty
 }
 var file_core_proto_depIdxs = []int32{
-	28, // 0: measure.Measure.createdAt:type_name -> google.protobuf.Timestamp
-	28, // 1: measure.Measure.updatedAt:type_name -> google.protobuf.Timestamp
+	30, // 0: measure.Measure.createdAt:type_name -> google.protobuf.Timestamp
+	30, // 1: measure.Measure.updatedAt:type_name -> google.protobuf.Timestamp
 	0,  // 2: measure.Material.measure:type_name -> measure.Measure
-	28, // 3: measure.Material.createdAt:type_name -> google.protobuf.Timestamp
-	28, // 4: measure.Material.updatedAt:type_name -> google.protobuf.Timestamp
+	30, // 3: measure.Material.createdAt:type_name -> google.protobuf.Timestamp
+	30, // 4: measure.Material.updatedAt:type_name -> google.protobuf.Timestamp
 	0,  // 5: measure.Price.measure:type_name -> measure.Measure
 	1,  // 6: measure.Price.materials:type_name -> measure.Material
 	2,  // 7: measure.Divide.prices:type_name -> measure.Price
-	28, // 8: measure.Object.deadline:type_name -> google.protobuf.Timestamp
-	28, // 9: measure.Object.createdAt:type_name -> google.protobuf.Timestamp
-	28, // 10: measure.Object.updatedAt:type_name -> google.protobuf.Timestamp
+	30, // 8: measure.Object.deadline:type_name -> google.protobuf.Timestamp
+	30, // 9: measure.Object.createdAt:type_name -> google.protobuf.Timestamp
+	30, // 10: measure.Object.updatedAt:type_name -> google.protobuf.Timestamp
 	1,  // 11: measure.GetMaterialRes.material:type_name -> measure.Material
 	1,  // 12: measure.GetManyMaterialRes.materials:type_name -> measure.Material
 	2,  // 13: measure.AddDivideReq.prices:type_name -> measure.Price
-	2,  // 14: measure.GetPriceRes.price:type_name -> measure.Price
-	2,  // 15: measure.GetManyPricesRes.prices:type_name -> measure.Price
-	3,  // 16: measure.GetManyDividesRes.divides:type_name -> measure.Divide
-	3,  // 17: measure.GetDivideRes.divide:type_name -> measure.Divide
-	4,  // 18: measure.GetManySectionsRes.sections:type_name -> measure.Section
-	4,  // 19: measure.GetSectionRes.section:type_name -> measure.Section
-	5,  // 20: measure.CheckAuthReq.user:type_name -> measure.User
-	10, // 21: measure.MaterialService.Add:input_type -> measure.AddMaterialReq
-	7,  // 22: measure.MaterialService.Get:input_type -> measure.GetMaterialReq
-	29, // 23: measure.MaterialService.GetMany:input_type -> google.protobuf.Empty
-	14, // 24: measure.MaterialService.Delete:input_type -> measure.DeleteMaterialReq
-	15, // 25: measure.PriceService.Get:input_type -> measure.GetPriceReq
-	29, // 26: measure.PriceService.GetMany:input_type -> google.protobuf.Empty
-	12, // 27: measure.DivideService.Add:input_type -> measure.AddDivideReq
-	29, // 28: measure.DivideService.GetMany:input_type -> google.protobuf.Empty
-	19, // 29: measure.DivideService.Get:input_type -> measure.GetDivideReq
-	21, // 30: measure.DivideService.Delete:input_type -> measure.DeleteDivideReq
-	29, // 31: measure.SectionService.GetMany:input_type -> google.protobuf.Empty
-	24, // 32: measure.SectionService.Get:input_type -> measure.GetSectionReq
-	26, // 33: measure.UserService.CheckAuth:input_type -> measure.CheckAuthReq
-	11, // 34: measure.MaterialService.Add:output_type -> measure.AddMaterialRes
-	8,  // 35: measure.MaterialService.Get:output_type -> measure.GetMaterialRes
-	9,  // 36: measure.MaterialService.GetMany:output_type -> measure.GetManyMaterialRes
-	29, // 37: measure.MaterialService.Delete:output_type -> google.protobuf.Empty
-	16, // 38: measure.PriceService.Get:output_type -> measure.GetPriceRes
-	17, // 39: measure.PriceService.GetMany:output_type -> measure.GetManyPricesRes
-	13, // 40: measure.DivideService.Add:output_type -> measure.AddDivideRes
-	18, // 41: measure.DivideService.GetMany:output_type -> measure.GetManyDividesRes
-	20, // 42: measure.DivideService.Get:output_type -> measure.GetDivideRes
-	22, // 43: measure.DivideService.Delete:output_type -> measure.DeleteDivideRes
-	23, // 44: measure.SectionService.GetMany:output_type -> measure.GetManySectionsRes
-	25, // 45: measure.SectionService.Get:output_type -> measure.GetSectionRes
-	27, // 46: measure.UserService.CheckAuth:output_type -> measure.CheckAuthRes
-	34, // [34:47] is the sub-list for method output_type
-	21, // [21:34] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	0,  // 14: measure.GetMeasureRes.measure:type_name -> measure.Measure
+	2,  // 15: measure.GetPriceRes.price:type_name -> measure.Price
+	2,  // 16: measure.GetManyPricesRes.prices:type_name -> measure.Price
+	3,  // 17: measure.GetManyDividesRes.divides:type_name -> measure.Divide
+	3,  // 18: measure.GetDivideRes.divide:type_name -> measure.Divide
+	4,  // 19: measure.GetManySectionsRes.sections:type_name -> measure.Section
+	4,  // 20: measure.GetSectionRes.section:type_name -> measure.Section
+	5,  // 21: measure.CheckAuthReq.user:type_name -> measure.User
+	10, // 22: measure.MaterialService.Add:input_type -> measure.AddMaterialReq
+	7,  // 23: measure.MaterialService.Get:input_type -> measure.GetMaterialReq
+	31, // 24: measure.MaterialService.GetMany:input_type -> google.protobuf.Empty
+	14, // 25: measure.MaterialService.Delete:input_type -> measure.DeleteMaterialReq
+	17, // 26: measure.PriceService.Get:input_type -> measure.GetPriceReq
+	31, // 27: measure.PriceService.GetMany:input_type -> google.protobuf.Empty
+	12, // 28: measure.DivideService.Add:input_type -> measure.AddDivideReq
+	31, // 29: measure.DivideService.GetMany:input_type -> google.protobuf.Empty
+	21, // 30: measure.DivideService.Get:input_type -> measure.GetDivideReq
+	23, // 31: measure.DivideService.Delete:input_type -> measure.DeleteDivideReq
+	31, // 32: measure.SectionService.GetMany:input_type -> google.protobuf.Empty
+	26, // 33: measure.SectionService.Get:input_type -> measure.GetSectionReq
+	28, // 34: measure.UserService.CheckAuth:input_type -> measure.CheckAuthReq
+	15, // 35: measure.MeasureService.Get:input_type -> measure.GetMeasureReq
+	11, // 36: measure.MaterialService.Add:output_type -> measure.AddMaterialRes
+	8,  // 37: measure.MaterialService.Get:output_type -> measure.GetMaterialRes
+	9,  // 38: measure.MaterialService.GetMany:output_type -> measure.GetManyMaterialRes
+	31, // 39: measure.MaterialService.Delete:output_type -> google.protobuf.Empty
+	18, // 40: measure.PriceService.Get:output_type -> measure.GetPriceRes
+	19, // 41: measure.PriceService.GetMany:output_type -> measure.GetManyPricesRes
+	13, // 42: measure.DivideService.Add:output_type -> measure.AddDivideRes
+	20, // 43: measure.DivideService.GetMany:output_type -> measure.GetManyDividesRes
+	22, // 44: measure.DivideService.Get:output_type -> measure.GetDivideRes
+	24, // 45: measure.DivideService.Delete:output_type -> measure.DeleteDivideRes
+	25, // 46: measure.SectionService.GetMany:output_type -> measure.GetManySectionsRes
+	27, // 47: measure.SectionService.Get:output_type -> measure.GetSectionRes
+	29, // 48: measure.UserService.CheckAuth:output_type -> measure.CheckAuthRes
+	16, // 49: measure.MeasureService.Get:output_type -> measure.GetMeasureRes
+	36, // [36:50] is the sub-list for method output_type
+	22, // [22:36] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_core_proto_init() }
@@ -2336,7 +2447,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[15].Exporter = func(v any, i int) any {
-			switch v := v.(*GetPriceReq); i {
+			switch v := v.(*GetMeasureReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2348,7 +2459,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[16].Exporter = func(v any, i int) any {
-			switch v := v.(*GetPriceRes); i {
+			switch v := v.(*GetMeasureRes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2360,7 +2471,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[17].Exporter = func(v any, i int) any {
-			switch v := v.(*GetManyPricesRes); i {
+			switch v := v.(*GetPriceReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2372,7 +2483,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[18].Exporter = func(v any, i int) any {
-			switch v := v.(*GetManyDividesRes); i {
+			switch v := v.(*GetPriceRes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2384,7 +2495,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[19].Exporter = func(v any, i int) any {
-			switch v := v.(*GetDivideReq); i {
+			switch v := v.(*GetManyPricesRes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2396,7 +2507,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[20].Exporter = func(v any, i int) any {
-			switch v := v.(*GetDivideRes); i {
+			switch v := v.(*GetManyDividesRes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2408,7 +2519,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[21].Exporter = func(v any, i int) any {
-			switch v := v.(*DeleteDivideReq); i {
+			switch v := v.(*GetDivideReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2420,7 +2531,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[22].Exporter = func(v any, i int) any {
-			switch v := v.(*DeleteDivideRes); i {
+			switch v := v.(*GetDivideRes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2432,7 +2543,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[23].Exporter = func(v any, i int) any {
-			switch v := v.(*GetManySectionsRes); i {
+			switch v := v.(*DeleteDivideReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2444,7 +2555,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[24].Exporter = func(v any, i int) any {
-			switch v := v.(*GetSectionReq); i {
+			switch v := v.(*DeleteDivideRes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2456,7 +2567,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[25].Exporter = func(v any, i int) any {
-			switch v := v.(*GetSectionRes); i {
+			switch v := v.(*GetManySectionsRes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2468,7 +2579,7 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[26].Exporter = func(v any, i int) any {
-			switch v := v.(*CheckAuthReq); i {
+			switch v := v.(*GetSectionReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2480,6 +2591,30 @@ func file_core_proto_init() {
 			}
 		}
 		file_core_proto_msgTypes[27].Exporter = func(v any, i int) any {
+			switch v := v.(*GetSectionRes); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_core_proto_msgTypes[28].Exporter = func(v any, i int) any {
+			switch v := v.(*CheckAuthReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_core_proto_msgTypes[29].Exporter = func(v any, i int) any {
 			switch v := v.(*CheckAuthRes); i {
 			case 0:
 				return &v.state
@@ -2498,9 +2633,9 @@ func file_core_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_core_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   28,
+			NumMessages:   30,
 			NumExtensions: 0,
-			NumServices:   5,
+			NumServices:   6,
 		},
 		GoTypes:           file_core_proto_goTypes,
 		DependencyIndexes: file_core_proto_depIdxs,

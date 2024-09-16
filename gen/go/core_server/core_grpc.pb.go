@@ -832,3 +832,105 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "core.proto",
 }
+
+const (
+	MeasureService_Get_FullMethodName = "/measure.MeasureService/Get"
+)
+
+// MeasureServiceClient is the client API for MeasureService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MeasureServiceClient interface {
+	Get(ctx context.Context, in *GetMeasureReq, opts ...grpc.CallOption) (*GetMeasureRes, error)
+}
+
+type measureServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMeasureServiceClient(cc grpc.ClientConnInterface) MeasureServiceClient {
+	return &measureServiceClient{cc}
+}
+
+func (c *measureServiceClient) Get(ctx context.Context, in *GetMeasureReq, opts ...grpc.CallOption) (*GetMeasureRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMeasureRes)
+	err := c.cc.Invoke(ctx, MeasureService_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MeasureServiceServer is the server API for MeasureService service.
+// All implementations must embed UnimplementedMeasureServiceServer
+// for forward compatibility.
+type MeasureServiceServer interface {
+	Get(context.Context, *GetMeasureReq) (*GetMeasureRes, error)
+	mustEmbedUnimplementedMeasureServiceServer()
+}
+
+// UnimplementedMeasureServiceServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedMeasureServiceServer struct{}
+
+func (UnimplementedMeasureServiceServer) Get(context.Context, *GetMeasureReq) (*GetMeasureRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedMeasureServiceServer) mustEmbedUnimplementedMeasureServiceServer() {}
+func (UnimplementedMeasureServiceServer) testEmbeddedByValue()                        {}
+
+// UnsafeMeasureServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MeasureServiceServer will
+// result in compilation errors.
+type UnsafeMeasureServiceServer interface {
+	mustEmbedUnimplementedMeasureServiceServer()
+}
+
+func RegisterMeasureServiceServer(s grpc.ServiceRegistrar, srv MeasureServiceServer) {
+	// If the following call pancis, it indicates UnimplementedMeasureServiceServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&MeasureService_ServiceDesc, srv)
+}
+
+func _MeasureService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMeasureReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeasureServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MeasureService_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeasureServiceServer).Get(ctx, req.(*GetMeasureReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// MeasureService_ServiceDesc is the grpc.ServiceDesc for MeasureService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var MeasureService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "measure.MeasureService",
+	HandlerType: (*MeasureServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _MeasureService_Get_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "core.proto",
+}
