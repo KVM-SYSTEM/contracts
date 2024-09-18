@@ -48,13 +48,13 @@ message Price {
 message Divide {
     string _id = 1;
     string title = 2;
-    string imageId = 3;
-    repeated Price prices = 4;
-    float costOfWork = 5;
-    float costOfMaterials = 6;
-    float sum = 7;
-    repeated string pricesSections = 8;
+    string description = 3;
+    int32 index = 4;
+    bool  isDefault = 5;
+    string user = 6;
+    bool isOnDelete = 7;
 }
+
 message Section {
     string _id = 1;
     string title = 2;
@@ -248,10 +248,7 @@ service PriceService{
 }
 
 service DivideService{
-    rpc Add(AddDivideReq) returns(AddDivideRes);
-    rpc GetMany(google.protobuf.Empty) returns (GetManyDividesRes);
     rpc Get(GetDivideReq) returns (GetDivideRes);
-    rpc Delete(DeleteDivideReq) returns (DeleteDivideRes);
 }
 
 service SectionService{
