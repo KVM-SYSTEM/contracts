@@ -82,6 +82,20 @@ message Object {
     bool isDefault = 15;
 }
 
+message Status {
+    string _id = 1;
+    string name = 2;
+}
+
+
+//Get Status
+message GetStatusReq{
+    string _id = 1;
+}
+
+message GetStatusRes{
+    Status status = 1;
+}
 //Get Object
 message GetObjectReq{
     string _id = 1;
@@ -252,4 +266,8 @@ service ObjectService{
     rpc Get(GetObjectReq) returns (GetObjectRes);
     rpc GetDefault(GetDefaultObjectReq) returns (GetDefaultObjectRes);
     rpc Update(UpdateObjectReq) returns (UpdateObjectRes);
+}
+
+service StatusService{
+    rpc Get(GetStatusReq) returns (GetStatusRes);
 }
