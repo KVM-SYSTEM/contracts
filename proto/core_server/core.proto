@@ -64,6 +64,7 @@ message User {
     string _id = 1;
     string internalToken = 2;
 }
+
 message Object {
     string _id = 1;
     string description = 2;
@@ -87,6 +88,9 @@ message Status {
     string name = 2;
 }
 
+message GetManyUsersRes{
+    repeated User users = 1;
+}
 
 //Get Status
 message GetStatusReq{
@@ -215,6 +219,7 @@ message GetSectionRes {
 message CheckAuthReq {
     User user = 1;
 }
+
 message CheckAuthRes {
     bool isAuth = 1;
 }
@@ -256,6 +261,7 @@ service SectionService{
 
 service UserService {
     rpc CheckAuth(CheckAuthReq) returns (CheckAuthRes);
+    rpc GetMany(google.protobuf.Empty) returns (GetManyUsersRes);
 }
 
 service MeasureService{
