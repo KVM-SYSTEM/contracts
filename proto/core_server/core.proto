@@ -171,6 +171,15 @@ message GetMeasureReq{
 message GetMeasureRes{
     Measure measure = 1;
 }
+
+message GetMeasureByNameReq{
+    string name = 1;
+}
+
+message GetMeasureByNameRes{
+    Measure measure = 1;
+}
+
 //Get prices
 
 message GetPriceReq {
@@ -263,6 +272,7 @@ service UserService {
 
 service MeasureService{
     rpc Get(GetMeasureReq) returns (GetMeasureRes);
+    rpc GetByName(GetMeasureByNameReq) returns (GetMeasureByNameRes);
 }
 
 service ObjectService{

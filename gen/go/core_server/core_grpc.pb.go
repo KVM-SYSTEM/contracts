@@ -758,7 +758,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	MeasureService_Get_FullMethodName = "/core.MeasureService/Get"
+	MeasureService_Get_FullMethodName       = "/core.MeasureService/Get"
+	MeasureService_GetByName_FullMethodName = "/core.MeasureService/GetByName"
 )
 
 // MeasureServiceClient is the client API for MeasureService service.
@@ -766,6 +767,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MeasureServiceClient interface {
 	Get(ctx context.Context, in *GetMeasureReq, opts ...grpc.CallOption) (*GetMeasureRes, error)
+	GetByName(ctx context.Context, in *GetMeasureByNameReq, opts ...grpc.CallOption) (*GetMeasureByNameRes, error)
 }
 
 type measureServiceClient struct {
@@ -786,11 +788,22 @@ func (c *measureServiceClient) Get(ctx context.Context, in *GetMeasureReq, opts 
 	return out, nil
 }
 
+func (c *measureServiceClient) GetByName(ctx context.Context, in *GetMeasureByNameReq, opts ...grpc.CallOption) (*GetMeasureByNameRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMeasureByNameRes)
+	err := c.cc.Invoke(ctx, MeasureService_GetByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MeasureServiceServer is the server API for MeasureService service.
 // All implementations must embed UnimplementedMeasureServiceServer
 // for forward compatibility.
 type MeasureServiceServer interface {
 	Get(context.Context, *GetMeasureReq) (*GetMeasureRes, error)
+	GetByName(context.Context, *GetMeasureByNameReq) (*GetMeasureByNameRes, error)
 	mustEmbedUnimplementedMeasureServiceServer()
 }
 
@@ -803,6 +816,9 @@ type UnimplementedMeasureServiceServer struct{}
 
 func (UnimplementedMeasureServiceServer) Get(context.Context, *GetMeasureReq) (*GetMeasureRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedMeasureServiceServer) GetByName(context.Context, *GetMeasureByNameReq) (*GetMeasureByNameRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByName not implemented")
 }
 func (UnimplementedMeasureServiceServer) mustEmbedUnimplementedMeasureServiceServer() {}
 func (UnimplementedMeasureServiceServer) testEmbeddedByValue()                        {}
@@ -843,6 +859,24 @@ func _MeasureService_Get_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MeasureService_GetByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMeasureByNameReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeasureServiceServer).GetByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MeasureService_GetByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeasureServiceServer).GetByName(ctx, req.(*GetMeasureByNameReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MeasureService_ServiceDesc is the grpc.ServiceDesc for MeasureService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -853,6 +887,10 @@ var MeasureService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _MeasureService_Get_Handler,
+		},
+		{
+			MethodName: "GetByName",
+			Handler:    _MeasureService_GetByName_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
