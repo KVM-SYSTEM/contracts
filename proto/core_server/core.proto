@@ -286,6 +286,7 @@ service UserService {
     rpc Get(GetUserReq) returns (GetUserRes);
     rpc GetMany(google.protobuf.Empty) returns (GetManyUsersRes);
     rpc AddFavorite(FavoriteReq) returns (FavoriteRes);
+    rpc RemoveFavorite(FavoriteReq) returns (FavoriteRes);
 }
 
 service MeasureService{

@@ -618,9 +618,10 @@ var SectionService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	UserService_Get_FullMethodName         = "/core.UserService/Get"
-	UserService_GetMany_FullMethodName     = "/core.UserService/GetMany"
-	UserService_AddFavorite_FullMethodName = "/core.UserService/AddFavorite"
+	UserService_Get_FullMethodName            = "/core.UserService/Get"
+	UserService_GetMany_FullMethodName        = "/core.UserService/GetMany"
+	UserService_AddFavorite_FullMethodName    = "/core.UserService/AddFavorite"
+	UserService_RemoveFavorite_FullMethodName = "/core.UserService/RemoveFavorite"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -630,6 +631,7 @@ type UserServiceClient interface {
 	Get(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserRes, error)
 	GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyUsersRes, error)
 	AddFavorite(ctx context.Context, in *FavoriteReq, opts ...grpc.CallOption) (*FavoriteRes, error)
+	RemoveFavorite(ctx context.Context, in *FavoriteReq, opts ...grpc.CallOption) (*FavoriteRes, error)
 }
 
 type userServiceClient struct {
@@ -670,6 +672,16 @@ func (c *userServiceClient) AddFavorite(ctx context.Context, in *FavoriteReq, op
 	return out, nil
 }
 
+func (c *userServiceClient) RemoveFavorite(ctx context.Context, in *FavoriteReq, opts ...grpc.CallOption) (*FavoriteRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FavoriteRes)
+	err := c.cc.Invoke(ctx, UserService_RemoveFavorite_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
@@ -677,6 +689,7 @@ type UserServiceServer interface {
 	Get(context.Context, *GetUserReq) (*GetUserRes, error)
 	GetMany(context.Context, *emptypb.Empty) (*GetManyUsersRes, error)
 	AddFavorite(context.Context, *FavoriteReq) (*FavoriteRes, error)
+	RemoveFavorite(context.Context, *FavoriteReq) (*FavoriteRes, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -695,6 +708,9 @@ func (UnimplementedUserServiceServer) GetMany(context.Context, *emptypb.Empty) (
 }
 func (UnimplementedUserServiceServer) AddFavorite(context.Context, *FavoriteReq) (*FavoriteRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddFavorite not implemented")
+}
+func (UnimplementedUserServiceServer) RemoveFavorite(context.Context, *FavoriteReq) (*FavoriteRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveFavorite not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -771,6 +787,24 @@ func _UserService_AddFavorite_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_RemoveFavorite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FavoriteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).RemoveFavorite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_RemoveFavorite_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).RemoveFavorite(ctx, req.(*FavoriteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -789,6 +823,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddFavorite",
 			Handler:    _UserService_AddFavorite_Handler,
+		},
+		{
+			MethodName: "RemoveFavorite",
+			Handler:    _UserService_RemoveFavorite_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
