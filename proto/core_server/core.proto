@@ -62,7 +62,14 @@ message Section {
 
 message User {
     string _id = 1;
-    string internalToken = 2;
+    string phone = 2;
+    string deleteDate = 3;
+    string email = 4;
+    string password = 5;
+    bool isEmailConfirmed = 6;
+    string role = 7;
+    string internalToken = 8;
+    repeated string chosenTemplates = 9;
 }
 
 message Object {
@@ -225,12 +232,12 @@ message GetSectionRes {
     Section section = 1;
 };
 
-message CheckAuthReq {
-    User user = 1;
+message GetUserReq {
+    string internalToken = 1;
 }
 
-message CheckAuthRes {
-    bool isAuth = 1;
+message GetUserRes {
+    User user = 1;
 }
 
 
@@ -266,7 +273,7 @@ service SectionService{
 }
 
 service UserService {
-    rpc CheckAuth(CheckAuthReq) returns (CheckAuthRes);
+    rpc Get(GetUserReq) returns (GetUserRes);
     rpc GetMany(google.protobuf.Empty) returns (GetManyUsersRes);
 }
 
