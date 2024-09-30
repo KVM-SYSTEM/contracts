@@ -240,6 +240,16 @@ message GetUserRes {
     User user = 1;
 }
 
+message FavoriteReq {
+    string user_id = 1;
+    string template_id = 2;
+}
+
+message FavoriteRes {
+    bool success = 1;
+    string message = 2;
+}
+
 
 message UpdateObjectReq{
     string _id = 1;
@@ -275,6 +285,7 @@ service SectionService{
 service UserService {
     rpc Get(GetUserReq) returns (GetUserRes);
     rpc GetMany(google.protobuf.Empty) returns (GetManyUsersRes);
+    rpc AddFavorite(FavoriteReq) returns (FavoriteRes);
 }
 
 service MeasureService{
