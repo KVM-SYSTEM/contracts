@@ -618,15 +618,15 @@ var SectionService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	UserService_CheckAuth_FullMethodName = "/core.UserService/CheckAuth"
-	UserService_GetMany_FullMethodName   = "/core.UserService/GetMany"
+	UserService_Get_FullMethodName     = "/core.UserService/Get"
+	UserService_GetMany_FullMethodName = "/core.UserService/GetMany"
 )
 
 // UserServiceClient is the client API for UserService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
-	CheckAuth(ctx context.Context, in *CheckAuthReq, opts ...grpc.CallOption) (*CheckAuthRes, error)
+	Get(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserRes, error)
 	GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyUsersRes, error)
 }
 
@@ -638,10 +638,10 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
 }
 
-func (c *userServiceClient) CheckAuth(ctx context.Context, in *CheckAuthReq, opts ...grpc.CallOption) (*CheckAuthRes, error) {
+func (c *userServiceClient) Get(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CheckAuthRes)
-	err := c.cc.Invoke(ctx, UserService_CheckAuth_FullMethodName, in, out, cOpts...)
+	out := new(GetUserRes)
+	err := c.cc.Invoke(ctx, UserService_Get_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -662,7 +662,7 @@ func (c *userServiceClient) GetMany(ctx context.Context, in *emptypb.Empty, opts
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
 type UserServiceServer interface {
-	CheckAuth(context.Context, *CheckAuthReq) (*CheckAuthRes, error)
+	Get(context.Context, *GetUserReq) (*GetUserRes, error)
 	GetMany(context.Context, *emptypb.Empty) (*GetManyUsersRes, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
@@ -674,8 +674,8 @@ type UserServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUserServiceServer struct{}
 
-func (UnimplementedUserServiceServer) CheckAuth(context.Context, *CheckAuthReq) (*CheckAuthRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckAuth not implemented")
+func (UnimplementedUserServiceServer) Get(context.Context, *GetUserReq) (*GetUserRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedUserServiceServer) GetMany(context.Context, *emptypb.Empty) (*GetManyUsersRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMany not implemented")
@@ -701,20 +701,20 @@ func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
 	s.RegisterService(&UserService_ServiceDesc, srv)
 }
 
-func _UserService_CheckAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckAuthReq)
+func _UserService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).CheckAuth(ctx, in)
+		return srv.(UserServiceServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_CheckAuth_FullMethodName,
+		FullMethod: UserService_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CheckAuth(ctx, req.(*CheckAuthReq))
+		return srv.(UserServiceServer).Get(ctx, req.(*GetUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -745,8 +745,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CheckAuth",
-			Handler:    _UserService_CheckAuth_Handler,
+			MethodName: "Get",
+			Handler:    _UserService_Get_Handler,
 		},
 		{
 			MethodName: "GetMany",
