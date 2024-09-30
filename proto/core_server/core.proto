@@ -260,6 +260,14 @@ message UpdateObjectRes{
     bool success = 1;
 }
 
+message GetFavoritesReq{
+    string _id = 1;
+}
+
+message GetFavoritesRes{
+    repeated string templateIds = 1;
+}
+
 
 service MaterialService{
     rpc Add(AddMaterialReq) returns (AddMaterialRes);
@@ -287,6 +295,7 @@ service UserService {
     rpc GetMany(google.protobuf.Empty) returns (GetManyUsersRes);
     rpc AddFavorite(FavoriteReq) returns (FavoriteRes);
     rpc RemoveFavorite(FavoriteReq) returns (FavoriteRes);
+    rpc GetFavorites(GetFavoritesReq) returns (GetFavoritesRes);
 }
 
 service MeasureService{

@@ -622,6 +622,7 @@ const (
 	UserService_GetMany_FullMethodName        = "/core.UserService/GetMany"
 	UserService_AddFavorite_FullMethodName    = "/core.UserService/AddFavorite"
 	UserService_RemoveFavorite_FullMethodName = "/core.UserService/RemoveFavorite"
+	UserService_GetFavorites_FullMethodName   = "/core.UserService/GetFavorites"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -632,6 +633,7 @@ type UserServiceClient interface {
 	GetMany(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetManyUsersRes, error)
 	AddFavorite(ctx context.Context, in *FavoriteReq, opts ...grpc.CallOption) (*FavoriteRes, error)
 	RemoveFavorite(ctx context.Context, in *FavoriteReq, opts ...grpc.CallOption) (*FavoriteRes, error)
+	GetFavorites(ctx context.Context, in *GetFavoritesReq, opts ...grpc.CallOption) (*GetFavoritesRes, error)
 }
 
 type userServiceClient struct {
@@ -682,6 +684,16 @@ func (c *userServiceClient) RemoveFavorite(ctx context.Context, in *FavoriteReq,
 	return out, nil
 }
 
+func (c *userServiceClient) GetFavorites(ctx context.Context, in *GetFavoritesReq, opts ...grpc.CallOption) (*GetFavoritesRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFavoritesRes)
+	err := c.cc.Invoke(ctx, UserService_GetFavorites_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
@@ -690,6 +702,7 @@ type UserServiceServer interface {
 	GetMany(context.Context, *emptypb.Empty) (*GetManyUsersRes, error)
 	AddFavorite(context.Context, *FavoriteReq) (*FavoriteRes, error)
 	RemoveFavorite(context.Context, *FavoriteReq) (*FavoriteRes, error)
+	GetFavorites(context.Context, *GetFavoritesReq) (*GetFavoritesRes, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -711,6 +724,9 @@ func (UnimplementedUserServiceServer) AddFavorite(context.Context, *FavoriteReq)
 }
 func (UnimplementedUserServiceServer) RemoveFavorite(context.Context, *FavoriteReq) (*FavoriteRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveFavorite not implemented")
+}
+func (UnimplementedUserServiceServer) GetFavorites(context.Context, *GetFavoritesReq) (*GetFavoritesRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFavorites not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -805,6 +821,24 @@ func _UserService_RemoveFavorite_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetFavorites_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFavoritesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetFavorites(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_GetFavorites_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetFavorites(ctx, req.(*GetFavoritesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -827,6 +861,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveFavorite",
 			Handler:    _UserService_RemoveFavorite_Handler,
+		},
+		{
+			MethodName: "GetFavorites",
+			Handler:    _UserService_GetFavorites_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
