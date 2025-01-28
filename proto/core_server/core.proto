@@ -214,6 +214,14 @@ message GetDivideRes {
     Divide divide = 1;
 };
 
+message GetSectionByDivideIDReq {
+    string divide_id = 1;
+}
+
+message GetSectionByDivideIDRes {
+    repeated Section sections = 1;
+}
+
 message DeleteDivideReq{
     string id = 1;
 }
@@ -289,6 +297,7 @@ service DivideService{
 service SectionService{
     rpc GetMany(google.protobuf.Empty) returns (GetManySectionsRes);
     rpc Get(GetSectionReq) returns (GetSectionRes);
+    rpc GetSectionByDivideID(GetSectionByDivideIDReq) returns (GetSectionByDivideIDRes);
 }
 
 service UserService {
