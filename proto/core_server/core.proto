@@ -58,6 +58,7 @@ message Divide {
 message Section {
     string _id = 1;
     string title = 2;
+    repeated string pricesDivides = 3;
 }
 
 message User {
